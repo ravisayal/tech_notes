@@ -1,5 +1,5 @@
 
-# Linux Create List of all Files in Folders and Subfolders with Custom Fields
+# Linux - create listing of Files in Folders and Subfolders with Custom Fields
 
 There are multiple ways to create a text file listing all the files. 
 ls command or find command in Linux can provide the simple listing with all the filenames. 
@@ -26,3 +26,4 @@ export -f custom_file_listing;
 find . -name "*.flac" -exec bash -c 'custom_file_listing "$0"' {} \; > filelist.txt
 ```
 
+url -XPOST -d 'fqdn=fuj-awslab.com' https://unboundtest.com/caaproblem/checkhost
