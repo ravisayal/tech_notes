@@ -6,13 +6,23 @@ ls command or find command in Linux can provide the simple listing with all the 
 
 However if there is a need to add additional columns in the output, we would need some additional scripting to get the desired output.
 
-In this example we are creating a text file with below output format
+In this example we are creating a text file with output format which will have hostname and foldername
 
 |hostname |directory  | filename|creation date| date|
 |--|--|--|--|--|
 |  |  |   |  |  |
 
-> Approach
+
+>Approach 1
+
+Use **find** and **awk** command to create a output
+
+```bash
+find $PWD -name "*.flac" -ls | awk -v hostname="$(hostname)" '{ print hostname, $0 }'
+
+```
+
+> Approach 2
 
 We will create a compound command in Linux shell and use this compound command in the -exec parameter of the find command.
 Note the use of *bash -c* in the find command
