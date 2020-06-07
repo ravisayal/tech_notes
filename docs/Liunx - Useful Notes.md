@@ -1,8 +1,8 @@
 # Useful Notes / Links for reference
 
 ## Steps to Install Java 
-Install Oracle JDK1.8 on Linux Server
-Download the RPM from Oracle Download site and install the RPM 
+* Install Oracle JDK1.8 on Linux Server
+* Download the RPM from Oracle Download site and install the RPM 
 https://gist.github.com/rtfpessoa/17752cbf7156bdf32c59
 
 ## tmux - customization guide
