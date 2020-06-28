@@ -17,7 +17,7 @@ aws ec2 request-spot-instances --block-duration-minutes 60  --instance-count 1  
 aws ec2 describe-spot-instance-requests \
     --query "SpotInstanceRequests[*].[CreateTime,SpotInstanceRequestId,Status.Code, LaunchedAvailabilityZone, InstanceType, InstanceId]" \
     --output table
-``` bash
+``` 
 
 > Pull the IP Address of the Spot Instances
 ``` bash
