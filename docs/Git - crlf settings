@@ -1,0 +1,25 @@
+# GIT crlf settings explained
+
+The following table explains the effect of autocrlf settings
+
+```
+╔═══════════════╦══════════════╦══════════════╦══════════════╗
+║ core.autocrlf ║     false    ║     input    ║     true     ║
+╠═══════════════╬══════════════╬══════════════╬══════════════╣
+║   git commit  ║ LF => LF     ║ LF => LF     ║ LF => LF     ║
+║               ║ CR => CR     ║ CR => CR     ║ CR => CR     ║
+║               ║ CRLF => CRLF ║ CRLF => LF   ║ CRLF => LF   ║
+╠═══════════════╬══════════════╬══════════════╬══════════════╣
+║  git checkout ║ LF => LF     ║ LF => LF     ║ LF => CRLF   ║
+║               ║ CR => CR     ║ CR => CR     ║ CR => CR     ║
+║               ║ CRLF => CRLF ║ CRLF => CRLF ║ CRLF => CRLF ║
+╚═══════════════╩══════════════╩══════════════╩══════════════╝
+```
+
+In order to preserve the original EOL for files coming from old repos, following setting will ensure that no inadvarent EOL conversion will occur
+```
+core.autocrlf = true
+core.safecrlf = true
+```
+
+For New repos it is recommended that user setup the .gitattributes for proper EOL conversions
