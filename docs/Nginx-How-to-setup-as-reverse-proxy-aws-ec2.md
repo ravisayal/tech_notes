@@ -42,8 +42,6 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     server {
-        listen       80;
-        listen       [::]:80;
         server_name  gitdev.fuj-awslab.com;
         root         /usr/share/nginx/html;
 
@@ -57,7 +55,15 @@ http {
         error_page 500 502 503 504 /50x.html;
             location = /50x.html {
         }
-    }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/gitdev.fuj-awslab.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/gitdev.fuj-awslab.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
 
 # Settings for a TLS enabled server.
 #
@@ -86,6 +92,21 @@ http {
 #        }
 #    }
 
+
+
+    server {
+    if ($host = gitdev.fuj-awslab.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        listen       80;
+        listen       [::]:80;
+        server_name  gitdev.fuj-awslab.com;
+    return 404; # managed by Certbot
+
+
+}
 }
 
 
