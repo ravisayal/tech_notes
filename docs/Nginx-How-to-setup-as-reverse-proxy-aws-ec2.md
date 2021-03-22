@@ -33,6 +33,7 @@ http {
     keepalive_timeout   65;
     types_hash_max_size 4096;
 
+    client_max_body_size 50M;
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
 
@@ -43,10 +44,35 @@ http {
 
     server {
         server_name  gitdev.fuj-awslab.com;
-        root         /usr/share/nginx/html;
+  #      root         /usr/share/nginx/html;
+        root         /;
 
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
+
+  location / {
+    rewrite ^/$ /ords/f?p=110:LOGIN_DESKTOP:0 permanent;
+  }
+
+ location /ords/ {
+    proxy_pass https://myetqedvzjore9t-orclatp.adb.us-ashburn-1.oraclecloudapps.com/ords/;
+    proxy_set_header Origin "" ;
+    proxy_set_header X-Forwarded-Host $host:$server_port;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_connect_timeout       600;
+    proxy_send_timeout          600;
+    proxy_read_timeout          600;
+    send_timeout                600;
+  }
+
+  location /i/ {
+    proxy_pass https://myetqedvzjore9t-orclatp.adb.us-ashburn-1.oraclecloudapps.com/i/;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
 
         error_page 404 /404.html;
             location = /40x.html {
@@ -106,8 +132,8 @@ http {
     return 404; # managed by Certbot
 
 
-}
-}
+}}
+
 
 
 ```
