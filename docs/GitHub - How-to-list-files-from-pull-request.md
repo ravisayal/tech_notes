@@ -6,14 +6,14 @@ Following code can be helpful
 > Run it from browser console 
 
 ``` javascript
-const fileElems = document.querySelectorAll('#files div.file-info a.link-gray-dark');
-const filePaths = [];
+var fileElems = document.querySelectorAll('#files div.file-info a.link-gray-dark');
+var filePaths = [];
 
 for (let a of fileElems) {
     filePaths.push(a.title);
 }
 
-const filePathsStr = filePaths.join('\n');
+var filePathsStr = filePaths.join('\n');
 console.log(filePathsStr);
 copy(filePathsStr);
 console.log('Copied to the clipboard as well 😁');

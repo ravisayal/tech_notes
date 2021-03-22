@@ -1,0 +1,5 @@
+print all unique words in a text file
+cat comment_file.txt | tr " " "\n" | sort | uniq -c
+
+count all unique words in a text file
+cat comment_file.txt | tr " " "\n" | sort | uniq -c | wc -l
