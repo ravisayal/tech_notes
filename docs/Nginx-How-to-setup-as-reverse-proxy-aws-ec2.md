@@ -44,6 +44,7 @@ http {
     server {
         listen       80;
         listen       [::]:80;
+        server_name  gitdev.fuj-awslab.com;
         root         /usr/share/nginx/html;
 
         # Load configuration files for the default server block.
